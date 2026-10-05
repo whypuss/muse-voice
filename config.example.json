@@ -1,0 +1,29 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1080
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "anytls",
+      "tag": "anytls-out",
+      "server": "127.0.0.1",
+      "server_port": 1180,
+      "password": "YOUR_ANYTLS_PASSWORD",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    }
+  ],
+  "node_target": "YOUR_NODE_HOST:YOUR_NODE_PORT",
+  "gemini_api_key": "YOUR_GEMINI_API_KEY"
+}
