@@ -6,7 +6,7 @@ import base64
 import subprocess
 import requests
 
-DEFAULT_MODEL = "gemini-2.5-flash-preview-tts"
+DEFAULT_MODEL = "gemini-3.1-flash-tts-preview"
 FALLBACK_MODELS = ["gemini-3.8-flash-tts", "gemini-3.1-flash-tts-preview"]
 
 def get_api_key():
