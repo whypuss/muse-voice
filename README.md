@@ -58,6 +58,8 @@
 muse-voice/
 ├── README.md              # 項目說明文件
 ├── config.example.json    # sing-box 與節點配置範本
+├── docs/                  # 文件與截圖資源
+│   └── aistudio-api-key.png
 ├── env.example            # 上游代理與環境變數範本
 ├── forwarder.py           # Egress Proxy CONNECT 轉發器
 ├── run-tunnel.sh          # 隧道一鍵啟動腳本
@@ -96,7 +98,7 @@ chmod 600 config.json env
 - **`env`**：
   - 若處於需要上游代理的環境，填入 `https_proxy=http://username:password@egress-proxy:port`。
 - **Gemini API Key**：
-  - 可寫入 `.gemini_key` 檔案（建議 `chmod 600 .gemini_key`）或設置環境變數 `GEMINI_API_KEY`。
+  - 可寫入 `.gemini_key` 檔案（建議 `chmod 600 .gemini_key`）或設置環境變數 `GEMINI_API_KEY`（獲取方式詳見下文 [獲取 Google Gemini API Key](#獲取-google-gemini-api-key)）。
 
 ### 3. 啟動隧道
 
@@ -110,6 +112,22 @@ chmod +x run-tunnel.sh
 啟動後：
 - `127.0.0.1:1180`：Python CONNECT forwarder 監聽中。
 - `127.0.0.1:1080`：sing-box Mixed Inbound 就緒（提供 HTTP / SOCKS5 代理）。
+
+---
+
+## 獲取 Google Gemini API Key
+
+使用本項目（如 `say.py`）需要 Google Gemini API Key。獲取步驟如下：
+
+1. **前往 Google AI Studio**：造訪 https://aistudio.google.com 並登入 Google 帳號。
+2. **獲取 API Key**：點擊左側選單左下角的鑰匙圖示（**API Keys**），按指示建立一條 API key（免費額度已足夠一般日常使用）。
+3. **配置 API Key**：將取得的 API Key 寫入以下其中一個位置：
+   - 環境變數 `GEMINI_API_KEY`
+   - 憑證檔案 `~/workspace/tts-tunnel/.gemini_key`（或本項目目錄下的 `.gemini_key`，權限設定為 `chmod 600`）
+   - `config.json` 中的 `gemini_api_key` 欄位
+4. **安全提示**：切勿將 API Key 提交至 GitHub 等公開倉庫（本項目的 `.gitignore` 已預設排除 `.gemini_key` 與 `config.json`）。
+
+![Google AI Studio API Key 入口](docs/aistudio-api-key.png)
 
 ---
 
